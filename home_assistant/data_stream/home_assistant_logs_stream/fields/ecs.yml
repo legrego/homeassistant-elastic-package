@@ -1,0 +1,10 @@
+- external: ecs
+  name: event.kind
+- external: ecs
+  name: event.module
+- external: ecs
+  name: log.level
+- external: ecs
+  name: log.logger
+- external: ecs
+  name: message

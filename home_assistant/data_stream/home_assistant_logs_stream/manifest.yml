@@ -1,0 +1,13 @@
+title: "Home Assistant Logs Stream"
+type: logs
+streams:
+  - input: logfile
+    title: Home Assistant logs
+    description: Collect home assistant logs
+    vars:
+      - name: paths
+        type: text
+        title: Paths
+        multi: true
+        default:
+          - /config/home-assistant.log

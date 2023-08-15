@@ -1,0 +1,45 @@
+---
+description: Pipeline for processing home assistant logs
+processors:
+    - set:
+        field: event.ingested
+        value: '{{_ingest.timestamp}}'
+    - set:
+        field: event.kind
+        value: 'event'
+    - rename:
+        field: message
+        target_field: event.original
+        ignore_missing: true
+    - grok:
+        field: event.original
+        patterns:
+        - '%{TIMESTAMP_ISO8601:hass.time} %{LOGLEVEL:log.level}(?: \(%{DATA:hass.location}\) )\[%{DATA:event.module}\] %{GREEDYDATA:message}'
+        ignore_missing: true
+    # - rename:
+     #    field: '@timestamp'
+      #  target_field: event.created
+    - date:
+        field: 'hass.time'
+        target_field: '@timestamp'
+        formats:
+        - yyyy-MM-dd' 'HH:mm:ss.SSS
+        # timezone: 'America/New_York'
+        on_failure:
+        - append:
+            field: error.message
+            value: '{{ _ingest.on_failure_message }}'
+    - remove:
+        field: 'hass.time'
+        ignore_missing: true
+    - remove:
+        field: 'hass.location'
+        ignore_missing: true
+    - remove:
+        field: 'hass'
+        ignore_missing: true
+  
+on_failure:
+- set:
+    field: error.message
+    value: '{{ _ingest.on_failure_message }}'

@@ -1,0 +1,30 @@
+{
+    "expected": [
+        {
+            "@timestamp": "2023-08-13T08:54:22.391Z",
+            "event": {
+                "ingested": "2023-08-15T16:46:50.387265508Z",
+                "kind": "event",
+                "module": "custom_components.elasticsearch",
+                "original": "2023-08-13 08:54:22.391 ERROR (MainThread) [custom_components.elasticsearch] Error creating initial index/alias: RequestError(400, 'invalid_alias_name_exception', 'Invalid alias name [active-hass-index-v4_1]: an index or data stream exists with the same name as the alias')\nTraceback (most recent call last):\n  File \"/config/custom_components/elasticsearch/es_index_manager.py\", line 100, in _create_index_template\n    await client.indices.create(\n  File \"/usr/local/lib/python3.11/site-packages/elasticsearch/_async/client/indices.py\", line 123, in create\n    return await self.transport.perform_request(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/elasticsearch/_async/transport.py\", line 330, in perform_request\n    raise e\n  File \"/usr/local/lib/python3.11/site-packages/elasticsearch/_async/transport.py\", line 297, in perform_request\n    status, headers, data = await connection.perform_request(\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/elasticsearch/_async/http_aiohttp.py\", line 330, in perform_request\n    self._raise_error(response.status, raw_data)\n  File \"/usr/local/lib/python3.11/site-packages/elasticsearch/connection/base.py\", line 322, in _raise_error\n    raise HTTP_EXCEPTIONS.get(status_code, TransportError)(\nelasticsearch.exceptions.RequestError: RequestError(400, 'invalid_alias_name_exception', 'Invalid alias name [active-hass-index-v4_1]: an index or data stream exists with the same name as the alias')"
+            },
+            "log": {
+                "level": "ERROR"
+            },
+            "message": "Error creating initial index/alias: RequestError(400, 'invalid_alias_name_exception', 'Invalid alias name [active-hass-index-v4_1]: an index or data stream exists with the same name as the alias')"
+        },
+        {
+            "@timestamp": "2023-08-13T08:54:22.413Z",
+            "event": {
+                "ingested": "2023-08-15T16:46:50.387273717Z",
+                "kind": "event",
+                "module": "custom_components.hacs",
+                "original": "2023-08-13 08:54:22.413 INFO (MainThread) [custom_components.hacs] \u003cHacsData restore\u003e Restore started"
+            },
+            "log": {
+                "level": "INFO"
+            },
+            "message": "\u003cHacsData restore\u003e Restore started"
+        }
+    ]
+}
