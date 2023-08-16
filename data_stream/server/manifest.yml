@@ -1,4 +1,4 @@
-title: "Home Assistant Logs Stream"
+title: "Home Assistant Server"
 type: logs
 streams:
   - input: logfile
